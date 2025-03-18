@@ -1,0 +1,31 @@
+name: CI
+
+env:
+  # Enable colored output for pytest
+  # https://github.com/pytest-dev/pytest/issues/7443
+  # https://github.com/actions/runner/issues/241
+  PY_COLORS: 1
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  tests:
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+        python-version:
+          - "3.13"
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v3
+      - name: Run tests
+        run: uv run --locked pytest
