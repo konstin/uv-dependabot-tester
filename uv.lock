@@ -436,7 +436,7 @@ wheels = [
 
 [[package]]
 name = "tqdm"
-version = "4.66.1"
+version = "4.67.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "colorama", marker = "sys_platform == 'win32'" },
